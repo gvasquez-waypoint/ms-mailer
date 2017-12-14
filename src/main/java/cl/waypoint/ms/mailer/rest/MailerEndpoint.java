@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import javax.validation.Valid;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import cl.waypoint.ms.mailer.dto.Message;
 
 @EnableAutoConfiguration
 @RestController
+@ComponentScan(basePackages = "cl.waypoint.ms.mailer.rest")
 @Validated
 public class MailerEndpoint {
 
