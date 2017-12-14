@@ -22,6 +22,7 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 
 import cl.waypoint.ms.mailer.dto.Attachment;
 import cl.waypoint.ms.mailer.dto.Message;
+import cl.waypoint.ms.mailer.rest.RestMessage;
 import cl.waypoint.ms.mailer.timer.TimerBounce;
 
 public class Mailer {
@@ -45,14 +46,13 @@ public class Mailer {
 		// private constructor to hide the implicit public one.
 	}
 
-	public static String send(Message msg) {
+	public static RestMessage send(Message msg) {
 		checkParams(msg);
 		checkRecipients(msg);
 		if (msg.getTo().length == 0 && msg.getCc().length == 0 && msg.getBcc().length == 0) {
 			throw new IllegalArgumentException("No valid recipients");
 		}
-		doSend(msg);
-		return msg.toString();
+		return doSend(msg);
 	}
 
 	private static void checkRecipients(Message msg) {
@@ -80,7 +80,7 @@ public class Mailer {
 		return approved.toArray(result);
 	}
 
-	private static void doSend(Message email) {
+	private static RestMessage doSend(Message email) {
 		MimeMessagePreparator preparator = new MimeMessagePreparator() {
 
 			public void prepare(MimeMessage msg) throws Exception {
@@ -127,6 +127,7 @@ public class Mailer {
 		} catch (MailException ex) {
 			LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
 		}
+		return null;
 
 	}
 

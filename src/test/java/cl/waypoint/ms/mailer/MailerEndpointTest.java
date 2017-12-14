@@ -24,7 +24,7 @@ public class MailerEndpointTest {
 	public final void basicSend() {
 		MailerEndpoint endpoint = new MailerEndpoint();
 		Message msg = getMessage();
-		String resp = endpoint.send(msg);
+		Object resp = endpoint.send(msg);
 		assertNotNull(resp);
 	}
 

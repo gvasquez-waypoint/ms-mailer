@@ -23,7 +23,7 @@ public class MailerEndpoint {
 	private static final String PONG = "pong";
 
 	@RequestMapping("/send")
-	public String send(@Valid @RequestBody Message msg) {
+	public RestMessage send(@Valid @RequestBody Message msg) {
 		LOGGER.log(Level.INFO, "Received: {0}", msg);
 		return Mailer.send(msg);
 	}
