@@ -34,7 +34,7 @@ public class MailerEndpointTest {
 		try {
 			endpoint.send(null);
 		} catch (IllegalArgumentException e) {
-			assertEquals(e.getMessage(), "Mensaje vacío");
+			assertEquals("Mensaje vacío", e.getMessage());
 		}
 	}
 
@@ -48,7 +48,7 @@ public class MailerEndpointTest {
 		return msg;
 	}
 
-	//@Test
+	// @Test
 	public void testResponse() throws JsonProcessingException {
 		TestRestTemplate restTemplate = new TestRestTemplate();
 		ObjectMapper mapper = new ObjectMapper();

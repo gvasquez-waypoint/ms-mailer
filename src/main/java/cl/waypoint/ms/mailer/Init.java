@@ -11,7 +11,7 @@ public class Init {
 
 	private static final Timer bounceTimer = new Timer("bounceTimer");
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		bounceTimer.schedule(new TimerBounce(), 0L, 1000 * 60L);
 		SpringApplication.run(MailerEndpoint.class, args);
 	}

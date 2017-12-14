@@ -15,7 +15,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.InputStreamSource;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -45,7 +44,7 @@ public class Mailer {
 	public static String send(Message msg) {
 		checkParams(msg);
 		checkRecipients(msg);
-		if (msg.getTo().length == 0 && msg.getTo().length == 0 && msg.getTo().length == 0) {
+		if (msg.getTo().length == 0 && msg.getCc().length == 0 && msg.getBcc().length == 0) {
 			throw new IllegalArgumentException("No valid recipients");
 		}
 		doSend(msg);
