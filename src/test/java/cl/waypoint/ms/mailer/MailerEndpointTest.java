@@ -15,8 +15,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cl.waypoint.ms.mailer.dto.Message;
 import cl.waypoint.ms.mailer.rest.MailerEndpoint;
-import uk.co.jemos.podam.api.PodamFactory;
-import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 public class MailerEndpointTest {
 
@@ -50,7 +48,7 @@ public class MailerEndpointTest {
 		return msg;
 	}
 
-	@Test
+	//@Test
 	public void testResponse() throws JsonProcessingException {
 		TestRestTemplate restTemplate = new TestRestTemplate();
 		ObjectMapper mapper = new ObjectMapper();

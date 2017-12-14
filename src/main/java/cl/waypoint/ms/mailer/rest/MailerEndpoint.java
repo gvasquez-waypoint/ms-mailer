@@ -20,7 +20,7 @@ public class MailerEndpoint {
 
 	@RequestMapping("/send")
 	public String send(@RequestBody Message msg) {
-		LOGGER.log(Level.INFO, "Received: {0}", msg.toString());
+		LOGGER.log(Level.INFO, "Received: {0}", msg);
 		return Mailer.send(msg);
 	}
 
