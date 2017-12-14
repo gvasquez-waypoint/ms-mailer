@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cl.waypoint.ms.mailer.dto.Message;
 import cl.waypoint.ms.mailer.rest.MailerEndpoint;
+import cl.waypoint.ms.mailer.rest.RestMessage;
 
 public class MailerEndpointTest {
 
@@ -24,8 +25,10 @@ public class MailerEndpointTest {
 	public final void basicSend() {
 		MailerEndpoint endpoint = new MailerEndpoint();
 		Message msg = getMessage();
-		Object resp = endpoint.send(msg);
+		RestMessage resp = endpoint.send(msg);
 		assertNotNull(resp);
+		assertEquals(200, resp.getStatus());
+
 	}
 
 	@Test

@@ -127,7 +127,7 @@ public class Mailer {
 		} catch (MailException ex) {
 			LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
 		}
-		return null;
+		return new RestMessage();
 
 	}
 

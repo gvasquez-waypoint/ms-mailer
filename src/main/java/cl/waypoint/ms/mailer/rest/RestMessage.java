@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(value = JsonInclude.Include.NON_EMPTY, content = JsonInclude.Include.NON_NULL)
 public class RestMessage {
+	private static final String OK = "OK";
+
 	@NotNull
 	private int status;
 
@@ -17,6 +19,11 @@ public class RestMessage {
 		this.status = status;
 		this.message = message;
 		this.detail = detail;
+	}
+
+	public RestMessage() {
+		this.status = 200;
+		this.message = OK;
 	}
 
 	public int getStatus() {
