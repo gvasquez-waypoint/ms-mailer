@@ -41,6 +41,10 @@ public class Mailer {
 		mailSender.setJavaMailProperties(props);
 	}
 
+	private Mailer() {
+		// private constructor to hide the implicit public one.
+	}
+
 	public static String send(Message msg) {
 		checkParams(msg);
 		checkRecipients(msg);
