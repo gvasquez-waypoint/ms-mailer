@@ -132,22 +132,9 @@ public class Mailer {
 		}
 		if (msg.getFrom() == null || msg.getFrom().isEmpty()) {
 			throw new IllegalArgumentException("Emisor vacío");
-		} else {
-			checkFormat(msg.getFrom());
 		}
 		if (msg.getTo() == null || msg.getTo().length == 0) {
 			throw new IllegalArgumentException("Receptor vacío");
-		} else {
-			checkFormat(msg.getTo());
-		}
-		if (msg.getBcc() != null && msg.getBcc().length != 0) {
-			checkFormat(msg.getBcc());
-		}
-		if (msg.getReplyTo() != null) {
-			checkFormat(msg.getReplyTo());
-		}
-		if (msg.getCc() != null && msg.getCc().length != 0) {
-			checkFormat(msg.getCc());
 		}
 		if (msg.getSubject() == null || msg.getSubject().isEmpty()) {
 			throw new IllegalArgumentException("Subject vacío");
@@ -155,16 +142,6 @@ public class Mailer {
 		if (msg.getBody() == null || msg.getBody().isEmpty()) {
 			throw new IllegalArgumentException("Cuerpo de mensaje vacío");
 		}
-	}
-
-	private static void checkFormat(String[] to) {
-		for (String address : to) {
-			checkFormat(address);
-		}
-	}
-
-	private static void checkFormat(String from) {
-		// TODO Auto-generated method stub
 	}
 
 }
