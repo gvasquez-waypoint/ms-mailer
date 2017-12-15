@@ -56,7 +56,7 @@
 				<version>1.0.0</version>
 				<configuration>
 					<forceTags>true</forceTags>
-					<imageName>${project.artifactId}</imageName>
+					<imageName>078472214496.dkr.ecr.us-west-1.amazonaws.com/${project.artifactId}</imageName>
 					<baseImage>openjdk:8-jdk-alpine</baseImage>
 					<entryPoint>["java","-Djava.security.egd=file:/dev/./urandom","-jar","/${project.build.finalName}.jar"]</entryPoint>
 					<imageTags>
@@ -71,6 +71,32 @@
 						</resource>
 					</resources>
 				</configuration>
+				<!-- <executions>
+					<execution>
+						<id>tag-image-version</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>tag</goal>
+						</goals>
+						<configuration>
+							<image>waypoint/${project.artifactId}</image>
+							<newName>078472214496.dkr.ecr.us-west-1.amazonaws.com/${project.artifactId}:${project.version}</newName>
+							<pushImage>true</pushImage>
+						</configuration>
+					</execution>
+					<execution>
+						<id>tag-image-latest</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>tag</goal>
+						</goals>
+						<configuration>
+							<image>waypoint/${project.artifactId}</image>
+							<newName>078472214496.dkr.ecr.us-west-1.amazonaws.com/${project.artifactId}:latest</newName>
+							<pushImage>true</pushImage>
+						</configuration>
+					</execution>
+				</executions> -->
 			</plugin>
 		</plugins>
 	</build>
