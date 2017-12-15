@@ -32,12 +32,11 @@ public class ExceptionHandlerController {
 	@ExceptionHandler(ConstraintViolationException.class)
 	public ResponseEntity handleValidation(HandlerMethod method, ConstraintViolationException ex) {
 		Set<ConstraintViolation<?>> constraintViolations = ex.getConstraintViolations();
-
 		Set<String> messages = new HashSet<>(constraintViolations.size());
-		messages.addAll(constraintViolations.stream()
-				.map(constraintViolation -> String.format("%s value '%s' %s", constraintViolation.getPropertyPath(),
-						constraintViolation.getInvalidValue(), constraintViolation.getMessage()))
-				.collect(Collectors.toList()));
+		for (ConstraintViolation<?> constraintViolation : constraintViolations) {
+			messages.add(String.format("%s value '%s' %s", constraintViolation.getPropertyPath(),
+					constraintViolation.getInvalidValue(), constraintViolation.getMessage()));
+		}
 		return responseError(new IllegalArgumentException("JSON con datos incorrectos", ex), HttpStatus.BAD_REQUEST,
 				messages.toString());
 	}
