@@ -49,7 +49,7 @@ public class Mailer {
 	public static RestMessage send(Message msg) {
 		checkParams(msg);
 		checkRecipients(msg);
-		if (msg.getTo().length == 0 && msg.getCc().length == 0 && msg.getBcc().length == 0) {
+		if (msg.getTo().size() == 0 && msg.getCc().size() == 0 && msg.getBcc().size() == 0) {
 			throw new IllegalArgumentException("No valid recipients");
 		}
 		return doSend(msg);
@@ -68,7 +68,7 @@ public class Mailer {
 
 	}
 
-	private static String[] filter(String[] to) {
+	private static List<String> filter(List<String> to) {
 		List<String> approved = new ArrayList<>();
 		for (String addr : to) {
 			if (!TimerBounce.isBlacklisted(addr)) {
@@ -76,8 +76,7 @@ public class Mailer {
 				approved.add(addr);
 			}
 		}
-		String[] result = new String[approved.size()];
-		return approved.toArray(result);
+		return approved;
 	}
 
 	private static RestMessage doSend(Message email) {
@@ -114,10 +113,10 @@ public class Mailer {
 				msg.setContent(email.getBody(), "text/html; charset=utf-8");
 			}
 
-			private Address[] getAddresses(String[] to) throws AddressException {
-				Address[] addr = new Address[to.length];
-				for (int i = 0; i < to.length; i++) {
-					addr[i] = new InternetAddress(to[i]);
+			private Address[] getAddresses(List<String> to) throws AddressException {
+				Address[] addr = new Address[to.size()];
+				for (int i = 0; i < to.size(); i++) {
+					addr[i] = new InternetAddress(to.get(i));
 				}
 				return addr;
 			}
@@ -138,7 +137,7 @@ public class Mailer {
 		if (msg.getFrom() == null || msg.getFrom().isEmpty()) {
 			throw new IllegalArgumentException("Emisor vacío");
 		}
-		if (msg.getTo() == null || msg.getTo().length == 0) {
+		if (msg.getTo() == null || msg.getTo().size() == 0) {
 			throw new IllegalArgumentException("Receptor vacío");
 		}
 		if (msg.getSubject() == null || msg.getSubject().isEmpty()) {
