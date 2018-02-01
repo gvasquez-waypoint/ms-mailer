@@ -2,11 +2,14 @@ package cl.waypoint.ms.mailer;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+
 import org.junit.Test;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
@@ -20,6 +23,8 @@ import cl.waypoint.ms.mailer.rest.RestMessage;
 public class MailerEndpointTest {
 
 	private static final String URL = "http://localhost:8080/send";
+	//private static final String URL = "http://ec2-54-196-21-246.compute-1.amazonaws.com/send";
+	
 
 	@Test
 	public final void basicSend() {
@@ -45,17 +50,17 @@ public class MailerEndpointTest {
 		Message msg = new Message();
 		msg.setFrom("gvasquez@waypoint.cl");
 		String[] to = { "Hello@waypoint.cl", "gvasquez@waypoint.cl" };
-		msg.setTo(to);
+		msg.setTo(Arrays.asList(to));
 		msg.setSubject(this.getClass().getName());
 		msg.setBody("cuerpo");
 		return msg;
 	}
 
-	// @Test
+	@Test
 	public void testResponse() throws JsonProcessingException {
 		TestRestTemplate restTemplate = new TestRestTemplate();
 		ObjectMapper mapper = new ObjectMapper();
-		Object input = null;
+		Object input = getMessage();
 		String body = mapper.writeValueAsString(input);
 		System.out.println("Body:" + body);
 		HttpHeaders headers = new HttpHeaders();
@@ -67,5 +72,6 @@ public class MailerEndpointTest {
 		if (resp.hasBody()) {
 			System.out.println(resp.getBody());
 		}
+		assertEquals(resp.getStatusCode(), HttpStatus.OK);
 	}
 }
