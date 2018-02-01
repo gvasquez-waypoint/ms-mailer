@@ -71,32 +71,13 @@
 						</resource>
 					</resources>
 				</configuration>
-				<!-- <executions>
-					<execution>
-						<id>tag-image-version</id>
-						<phase>deploy</phase>
-						<goals>
-							<goal>tag</goal>
-						</goals>
-						<configuration>
-							<image>waypoint/${project.artifactId}</image>
-							<newName>078472214496.dkr.ecr.us-west-1.amazonaws.com/${project.artifactId}:${project.version}</newName>
-							<pushImage>true</pushImage>
-						</configuration>
-					</execution>
-					<execution>
-						<id>tag-image-latest</id>
-						<phase>deploy</phase>
-						<goals>
-							<goal>tag</goal>
-						</goals>
-						<configuration>
-							<image>waypoint/${project.artifactId}</image>
-							<newName>078472214496.dkr.ecr.us-west-1.amazonaws.com/${project.artifactId}:latest</newName>
-							<pushImage>true</pushImage>
-						</configuration>
-					</execution>
-				</executions> -->
+				<!-- <executions> <execution> <id>tag-image-version</id> <phase>deploy</phase> 
+					<goals> <goal>tag</goal> </goals> <configuration> <image>waypoint/${project.artifactId}</image> 
+					<newName>078472214496.dkr.ecr.us-west-1.amazonaws.com/${project.artifactId}:${project.version}</newName> 
+					<pushImage>true</pushImage> </configuration> </execution> <execution> <id>tag-image-latest</id> 
+					<phase>deploy</phase> <goals> <goal>tag</goal> </goals> <configuration> <image>waypoint/${project.artifactId}</image> 
+					<newName>078472214496.dkr.ecr.us-west-1.amazonaws.com/${project.artifactId}:latest</newName> 
+					<pushImage>true</pushImage> </configuration> </execution> </executions> -->
 			</plugin>
 		</plugins>
 	</build>
@@ -150,6 +131,17 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>3.0.6</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>cz.jirutka.validator</groupId>
+			<artifactId>validator-collection</artifactId>
+			<version>2.2.0</version>
 		</dependency>
 	</dependencies>
 </project>
