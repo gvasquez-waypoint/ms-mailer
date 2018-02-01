@@ -22,11 +22,10 @@ import cl.waypoint.ms.mailer.rest.RestMessage;
 
 public class MailerEndpointTest {
 
-	private static final String URL = "http://localhost:8080/send";
-	//private static final String URL = "http://ec2-54-196-21-246.compute-1.amazonaws.com/send";
-	
+	// private static final String URL = "http://localhost:8080/send";
+	private static final String URL = "http://ec2-174-129-174-97.compute-1.amazonaws.com/send";
 
-	@Test
+	// @Test
 	public final void basicSend() {
 		MailerEndpoint endpoint = new MailerEndpoint();
 		Message msg = getMessage();
@@ -36,7 +35,7 @@ public class MailerEndpointTest {
 
 	}
 
-	@Test
+	// @Test
 	public final void emptySend() {
 		MailerEndpoint endpoint = new MailerEndpoint();
 		try {
@@ -49,7 +48,7 @@ public class MailerEndpointTest {
 	private Message getMessage() {
 		Message msg = new Message();
 		msg.setFrom("gvasquez@waypoint.cl");
-		String[] to = { "Hello@waypoint.cl", "gvasquez@waypoint.cl" };
+		String[] to = { "hcifuentes@waypoint.cl", "gvasquez@waypoint.cl" };
 		msg.setTo(Arrays.asList(to));
 		msg.setSubject(this.getClass().getName());
 		msg.setBody("cuerpo");
@@ -72,6 +71,6 @@ public class MailerEndpointTest {
 		if (resp.hasBody()) {
 			System.out.println(resp.getBody());
 		}
-		assertEquals(resp.getStatusCode(), HttpStatus.OK);
+		assertEquals(HttpStatus.OK, resp.getStatusCode());
 	}
 }

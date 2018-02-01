@@ -49,7 +49,7 @@ public class Mailer {
 	public static RestMessage send(Message msg) {
 		checkParams(msg);
 		checkRecipients(msg);
-		if (msg.getTo().size() == 0 && msg.getCc().size() == 0 && msg.getBcc().size() == 0) {
+		if (msg.getTo().isEmpty() && msg.getCc().isEmpty() && msg.getBcc().isEmpty()) {
 			throw new IllegalArgumentException("No valid recipients");
 		}
 		return doSend(msg);
@@ -137,7 +137,7 @@ public class Mailer {
 		if (msg.getFrom() == null || msg.getFrom().isEmpty()) {
 			throw new IllegalArgumentException("Emisor vacío");
 		}
-		if (msg.getTo() == null || msg.getTo().size() == 0) {
+		if (msg.getTo() == null || msg.getTo().isEmpty() ) {
 			throw new IllegalArgumentException("Receptor vacío");
 		}
 		if (msg.getSubject() == null || msg.getSubject().isEmpty()) {
