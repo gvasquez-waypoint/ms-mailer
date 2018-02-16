@@ -22,8 +22,7 @@ import cl.waypoint.ms.mailer.rest.RestMessage;
 
 public class MailerEndpointTest {
 
-	// private static final String URL = "http://localhost:8080/send";
-	private static final String URL = "http://ec2-174-129-174-97.compute-1.amazonaws.com/send";
+	private static final String URL = "http://localhost:8080/send";
 
 	// @Test
 	public final void basicSend() {

@@ -31,14 +31,14 @@ public class Mailer {
 
 	static {
 		mailSender = new JavaMailSenderImpl();
-		mailSender.setHost("email-smtp.us-west-2.amazonaws.com");
+		mailSender.setHost(Messages.getString("Mailer.host")); //$NON-NLS-1$
 		mailSender.setPort(587);
-		mailSender.setUsername("AKIAJKPTU635SQO2KXNA");
-		mailSender.setPassword("An21doQY5OnZsvgn+G2aFuACIqRx0RvlnsU64clIDdbT");
+		mailSender.setUsername(Messages.getString("Mailer.username")); //$NON-NLS-1$
+		mailSender.setPassword(Messages.getString("Mailer.password")); //$NON-NLS-1$
 
 		Properties props = new Properties();
-		props.setProperty("mail.smtp.auth", "true");
-		props.setProperty("mail.smtp.starttls.enable", "true");
+		props.setProperty("mail.smtp.auth", "true"); //$NON-NLS-1$ //$NON-NLS-2$
+		props.setProperty("mail.smtp.starttls.enable", "true"); //$NON-NLS-1$ //$NON-NLS-2$
 		mailSender.setJavaMailProperties(props);
 	}
 
@@ -50,7 +50,7 @@ public class Mailer {
 		checkParams(msg);
 		checkRecipients(msg);
 		if (msg.getTo().isEmpty() && msg.getCc().isEmpty() && msg.getBcc().isEmpty()) {
-			throw new IllegalArgumentException("No valid recipients");
+			throw new IllegalArgumentException("No valid recipients"); //$NON-NLS-1$
 		}
 		return doSend(msg);
 	}
@@ -83,7 +83,7 @@ public class Mailer {
 		MimeMessagePreparator preparator = new MimeMessagePreparator() {
 
 			public void prepare(MimeMessage msg) throws Exception {
-				MimeMessageHelper helper = new MimeMessageHelper(msg, true, "UTF-8");
+				MimeMessageHelper helper = new MimeMessageHelper(msg, true, "UTF-8"); //$NON-NLS-1$
 
 				if (email.getAttachments() != null) {
 					for (Attachment attach : email.getAttachments()) {
@@ -102,7 +102,7 @@ public class Mailer {
 					msg.setRecipients(javax.mail.Message.RecipientType.BCC, getAddresses(email.getBcc()));
 				}
 				msg.setFrom(new InternetAddress(email.getFrom()));
-				msg.setSubject(email.getSubject(), "UTF-8");
+				msg.setSubject(email.getSubject(), "UTF-8"); //$NON-NLS-1$
 
 				if (email.getReplyTo() != null) {
 					Address[] replyTo = new Address[1];
@@ -110,7 +110,7 @@ public class Mailer {
 					msg.setReplyTo(replyTo);
 				}
 
-				msg.setContent(email.getBody(), "text/html; charset=utf-8");
+				msg.setContent(email.getBody(), "text/html; charset=utf-8"); //$NON-NLS-1$
 			}
 
 			private Address[] getAddresses(List<String> to) throws AddressException {
@@ -132,19 +132,19 @@ public class Mailer {
 
 	private static void checkParams(Message msg) {
 		if (msg == null) {
-			throw new IllegalArgumentException("Mensaje vacío");
+			throw new IllegalArgumentException("Mensaje vacío"); //$NON-NLS-1$
 		}
 		if (msg.getFrom() == null || msg.getFrom().isEmpty()) {
-			throw new IllegalArgumentException("Emisor vacío");
+			throw new IllegalArgumentException("Emisor vacío"); //$NON-NLS-1$
 		}
 		if (msg.getTo() == null || msg.getTo().isEmpty() ) {
-			throw new IllegalArgumentException("Receptor vacío");
+			throw new IllegalArgumentException("Receptor vacío"); //$NON-NLS-1$
 		}
 		if (msg.getSubject() == null || msg.getSubject().isEmpty()) {
-			throw new IllegalArgumentException("Subject vacío");
+			throw new IllegalArgumentException("Subject vacío"); //$NON-NLS-1$
 		}
 		if (msg.getBody() == null || msg.getBody().isEmpty()) {
-			throw new IllegalArgumentException("Cuerpo de mensaje vacío");
+			throw new IllegalArgumentException("Cuerpo de mensaje vacío"); //$NON-NLS-1$
 		}
 	}
 
