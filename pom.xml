@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cl.waypoint.ms</groupId>
 	<artifactId>ms-mailer</artifactId>
-	<version>0.0.3</version>
+	<version>0.0.4</version>
 	<packaging>jar</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -95,9 +95,9 @@
 	</repositories>
 	<dependencies>
 		<dependency>
-			<groupId>cl</groupId>
+			<groupId>cl.waypoint</groupId>
 			<artifactId>wraper</artifactId>
-			<version>3.0</version>
+			<version>3.3</version>
 		</dependency>
 		<dependency>
 			<groupId>redis.clients</groupId>
