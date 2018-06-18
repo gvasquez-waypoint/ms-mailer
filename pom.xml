@@ -8,6 +8,13 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	<repositories>
+		<repository>
+			<id>waypoint-libs</id>
+			<name>waypoint-libs</name>
+			<url>http://id.waypoint.cl:8082/artifactory/libs-release-local</url>
+		</repository>
+	</repositories>
 	<build>
 		<finalName>${project.artifactId}##${project.version}</finalName>
 		<plugins>
@@ -86,13 +93,6 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.9.RELEASE</version>
 	</parent>
-	<repositories>
-		<repository>
-			<id>waypoint-libs</id>
-			<name>waypoint-libs</name>
-			<url>http://id.waypoint.cl:8082/artifactory/libs-release-local</url>
-		</repository>
-	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>cl.waypoint</groupId>
